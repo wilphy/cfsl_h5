@@ -21,8 +21,6 @@ export default {};
   height: 30px;
   display: inline-flex;
   flex-direction: row;
-  margin-left: 20px;
-  margin-top: 4px;
 }
 
 .index-container {

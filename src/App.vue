@@ -3,7 +3,7 @@
     <router-view></router-view>
 
     <!-- tab栏-->
-    <div class="wrapper">
+    <div class="tab-wrapper">
       <div class="tab-box classic tab-active" @click="changeTab(0)">
         <img src="./../public/images/tab/classic.png" alt="" />
         <div class="tab-title">流行</div>
@@ -66,7 +66,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.wrapper {
+.tab-wrapper {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -91,12 +91,6 @@ export default {
   font-size: 14px;
   position: relative;
   top: -8px;
-}
-.classic {
-}
-.book {
-}
-.my {
 }
 .tab-active {
   color: #f06;

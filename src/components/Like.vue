@@ -15,7 +15,6 @@ export default {};
   flex-direction: row;
   padding: 5px;
   width: 45px;
-  margin-top: 6px;
 }
 
 .img {

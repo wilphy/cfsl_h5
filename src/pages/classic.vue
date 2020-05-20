@@ -3,23 +3,37 @@
     <!-- 头部栏 -->
     <div class="header">
       <!-- 期刊日期 -->
-      <episode></episode>
+      <episode class="epsoide"></episode>
       <!-- 点赞 -->
-      <like></like>
+      <like class="like"></like>
     </div>
+
+    <!-- 内容 -->
+    <movie :img="imgUrl" :content="content"> </movie>
+
+    <!-- 导航 -->
+    <navi :title="title"></navi>
   </div>
 </template>
 
 <script>
 import Like from "./../components/Like";
 import Episode from "./../components/Episode";
+import Movie from "./../components/classic/Movie";
+import Navi from "./../components/classic/Navi";
 export default {
   components: {
     Like,
     Episode,
+    Movie,
+    Navi,
   },
   data() {
-    return {};
+    return {
+      imgUrl: "",
+      content: "",
+      title: "",
+    };
   },
   mounted() {
     this.getLast();
@@ -27,9 +41,16 @@ export default {
   methods: {
     getLast() {
       this.axios
-        .get("/classic/latest?appkey=RdshydjBvcYZhMZC", {})
+        .get("/classic/latest", {
+          params: {
+            appkey: "RdshydjBvcYZhMZC",
+          },
+        })
         .then((res) => {
           console.log(res);
+          this.imgUrl = res.data.image;
+          this.content = res.data.content;
+          this.title = res.data.title;
         });
     },
   },
@@ -43,6 +64,7 @@ export default {
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  color: #555;
 }
 
 .header {
@@ -53,5 +75,19 @@ export default {
   align-items: center;
   border-bottom: 1px solid #f5f5f5;
   padding: 10px;
+}
+
+.epsoide {
+  margin-left: 20rpx;
+  margin-top: 4rpx;
+}
+
+.like {
+  margin-top: 6rpx;
+}
+
+.navi {
+  position: absolute;
+  bottom: 126px;
 }
 </style>
