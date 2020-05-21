@@ -4,16 +4,31 @@
 
     <!-- tab栏-->
     <div class="tab-wrapper">
-      <div class="tab-box classic tab-active" @click="changeTab(0)">
-        <img src="./../public/images/tab/classic.png" alt="" />
+      <div
+        class="tab-box classic"
+        :class="activeTabClassic ? 'tab-active' : ''"
+        @click="changeTab(0)"
+      >
+        <img
+          :src="activeTabClassic ? tabClassicHighLight : tabClassic"
+          alt=""
+        />
         <div class="tab-title">流行</div>
       </div>
-      <div class="tab-box book" @click="changeTab(1)">
-        <img src="./../public/images/tab/book.png" alt="" />
+      <div
+        class="tab-box book"
+        :class="activeTabBook ? 'tab-active' : ''"
+        @click="changeTab(1)"
+      >
+        <img :src="activeTabBook ? tabBookHighLight : tabBook" alt="" />
         <div class="tab-title">书籍</div>
       </div>
-      <div class="tab-box my" @click="changeTab(2)">
-        <img src="./../public/images/tab/my.png" alt="" />
+      <div
+        class="tab-box my"
+        :class="activeTabMy ? 'tab-active' : ''"
+        @click="changeTab(2)"
+      >
+        <img :src="activeTabMy ? tabMyHighLight : tabMy" alt="" />
         <div class="tab-title">我的</div>
       </div>
     </div>
@@ -21,22 +36,31 @@
 </template>
 
 <script>
-import classic from "./../public/images/tab/classic.png";
-import classicActive from "./../public/images/tab/classic@highlight.png";
+import tabClassic from "./../public/images/tab/classic.png";
+import tabClassicHighLight from "./../public/images/tab/classic@highlight.png";
+import tabBook from "./../public/images/tab/book.png";
+import tabBookHighLight from "./../public/images/tab/book@highlight.png";
+import tabMy from "./../public/images/tab/my.png";
+import tabMyHighLight from "./../public/images/tab/my@highlight.png";
 export default {
   name: "App",
   components: {},
   data() {
     return {
-      tabImgUrl: [
-        {
-          classic: classic,
-        },
-        {
-          classicActive: classicActive,
-        },
-      ],
+      tabClassic,
+      tabClassicHighLight,
+      tabBook,
+      tabBookHighLight,
+      tabMy,
+      tabMyHighLight,
+      activeTabClassic: false,
+      activeTabBook: false,
+      activeTabMy: false,
     };
+  },
+
+  mounted() {
+    this.activeTabClassic = true;
   },
 
   methods: {
@@ -44,13 +68,21 @@ export default {
       switch (num) {
         case 0:
           this.$router.push("/classic");
+          this.activeTabClassic = true;
+          this.activeTabBook = false;
+          this.activeTabMy = false;
           break;
         case 1:
           this.$router.push("/book");
-          console.log(this.tabImgUrl[0]);
+          this.activeTabClassic = false;
+          this.activeTabBook = true;
+          this.activeTabMy = false;
           break;
         case 2:
           this.$router.push("/my");
+          this.activeTabClassic = false;
+          this.activeTabBook = false;
+          this.activeTabMy = true;
           break;
         default:
           break;
@@ -93,6 +125,6 @@ export default {
   top: -8px;
 }
 .tab-active {
-  color: #f06;
+  color: #111;
 }
 </style>
