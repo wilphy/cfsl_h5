@@ -12,11 +12,11 @@
     <movie :img="imgUrl" :content="content"> </movie>
 
     <!-- 导航 -->
-    <navi :title="title"></navi>
+    <navi :title="title" :first="first" :latest="latest"></navi>
   </div>
 </template>
 
-<script>
+<script scoped>
 import Like from "./../components/Like";
 import Episode from "./../components/Episode";
 import Movie from "./../components/classic/Movie";
@@ -33,6 +33,8 @@ export default {
       imgUrl: "",
       content: "",
       title: "",
+      first: false, // 是否为第一期刊
+      latest: false, // 是否为最新期刊
     };
   },
   mounted() {
@@ -51,6 +53,10 @@ export default {
           this.imgUrl = res.data.image;
           this.content = res.data.content;
           this.title = res.data.title;
+          if (res.data.id === 1) {
+            this.first = true;
+          }
+          this.latest = false;
         });
     },
   },
@@ -78,12 +84,13 @@ export default {
 }
 
 .epsoide {
-  margin-left: 20rpx;
-  margin-top: 4rpx;
+  margin-left: 20px;
+  margin-top: 4px;
 }
 
 .like {
-  margin-top: 6rpx;
+  margin-top: 6px;
+  padding-right: 16px;
 }
 
 .navi {

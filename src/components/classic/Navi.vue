@@ -1,24 +1,28 @@
 <template>
   <div class="navi">
-    <!-- <img @click="onLeft" class="icon" :src="leftSrc" /> -->
-    <img @click="onLeft" class="icon" src="./images/triangle.dis@left.png" />
+    <img @click="onLeft" class="icon" :src="first ? disLeftSrc : leftSrc" />
     <div class="title">{{ title }}</div>
-    <img @click="onRight" class="icon" src="./images/triangle@right.png" />
+    <img @click="onRight" class="icon" :src="rightSrc" />
   </div>
 </template>
 
 <script>
+import disLeftSrc from "./images/triangle.dis@left.png";
+import leftSrc from "./images/triangle@left.png";
+import disRightSrc from "./images/triangle.dis@right.png";
+import rightSrc from "./images/triangle@right.png";
 export default {
   props: {
     title: String,
     latest: Boolean,
+    first: Boolean,
   },
   data() {
     return {
-      disLeftSrc: "images/triangle.dis@left.png",
-      leftSrc: "images/triangle@left.png",
-      disRightSrc: "images/triangle.dis@right.png",
-      rightSrc: "images/triangle@right.png",
+      disLeftSrc, // 禁用左箭头
+      leftSrc, // 左箭头
+      disRightSrc, // 禁用右箭头
+      rightSrc, // 右箭头
     };
   },
   methods: {

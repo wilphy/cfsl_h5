@@ -60,7 +60,20 @@ export default {
   },
 
   mounted() {
-    this.activeTabClassic = true;
+    let currentTab = this.$route.path;
+    switch (currentTab) {
+      case "/classic":
+        this.activeTabClassic = true;
+        break;
+      case "/book":
+        this.activeTabBook = true;
+        break;
+      case "/my":
+        this.activeTabMy = true;
+        break;
+      default:
+        break;
+    }
   },
 
   methods: {
@@ -93,6 +106,10 @@ export default {
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -116,8 +133,8 @@ export default {
 }
 
 .tab-box img {
-  width: 50px;
-  height: 50px;
+  width: 36px;
+  height: 36px;
 }
 .tab-title {
   font-size: 14px;
@@ -125,6 +142,6 @@ export default {
   top: -8px;
 }
 .tab-active {
-  color: #111;
+  color: #f06;
 }
 </style>
